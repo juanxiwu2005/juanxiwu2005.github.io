@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Steve Wu · Portfolio</title>
+<meta name="description" content="Steve (Juanxi) Wu: supply chain and procurement projects, from American Airlines to Bocconi case work and a student-org ERP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: an airport departure board as the hero index; each project below is a "flight" with a boarding-pass header and Problem → Approach → Output → Result → Tools fields. */
+:root{
+  --paper:#F2F4F6;      /* page */
+  --card:#FFFFFF;       /* boarding-pass surface */
+  --ink:#16212B;        /* text */
+  --muted:#5B6773;      /* secondary text */
+  --rule:#D5DBE1;       /* hairlines */
+  --board:#111A22;      /* departure board */
+  --flap:#1B2731;       /* split-flap tile */
+  --flaptext:#F4C04E;   /* amber board text */
+  --accent:#9A6410;     /* amber, darkened for light paper */
+  --live:#2E8B57;       /* in-flight status */
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C1217; --card:#141D25; --ink:#E7ECF0; --muted:#97A3AE; --rule:#25313B;
+    --board:#070C10; --flap:#16212A; --flaptext:#F4C04E; --accent:#F0B947; --live:#5CC48A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C1217; --card:#141D25; --ink:#E7ECF0; --muted:#97A3AE; --rule:#25313B;
+  --board:#070C10; --flap:#16212A; --flaptext:#F4C04E; --accent:#F0B947; --live:#5CC48A;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.label{font:600 12px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- top bar ---------- */
+.top{padding-block:22px 0}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.mark{font:800 22px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
+.mark span{color:var(--accent)}
+.nav{display:flex;gap:18px;flex-wrap:wrap}
+.nav a{font:500 14px/1 var(--body);text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{padding-block:56px 40px}
+.hero h1{font:800 clamp(52px,10vw,112px)/.9 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:14px 0 0;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:clamp(19px,2.4vw,23px);line-height:1.45;max-width:34ch;margin:22px 0 0;text-wrap:balance}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:26px;color:var(--muted);font-size:15px}
+.facts b{color:var(--ink);font-weight:600}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--body);padding:13px 18px;border-radius:3px;text-decoration:none;border:1px solid var(--ink)}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.solid:hover{opacity:.88}
+.btn:not(.solid):hover{background:var(--card)}
+
+/* ---------- departure board ---------- */
+.boardband{background:var(--board);color:#E9EEF2;padding-block:28px 34px}
+.boardhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.boardhead h2{font:800 30px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;margin:0;color:var(--flaptext)}
+.boardhead .label{color:#8D9AA6}
+.rows{display:grid;gap:6px}
+.row{display:grid;grid-template-columns:84px minmax(0,1fr) 70px 262px 112px;gap:10px;align-items:center;text-decoration:none;color:inherit;padding:8px 10px;border-radius:3px;background:rgba(255,255,255,.02)}
+.row:hover{background:rgba(255,255,255,.07)}
+.row.headrow{background:none;padding-block:0 4px}
+.row.headrow span{font:600 11px/1 var(--mono);letter-spacing:.16em;color:#7F8C98;text-transform:uppercase}
+.when,.code,.fig,.stat{font:700 15px/1 var(--mono);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.when{color:#B9C4CD}
+.proj{font:600 16px/1.3 var(--body);min-width:0}
+.code,.fig{color:var(--flaptext);white-space:nowrap}
+.fig .flap{font-size:14px}
+.flap{display:inline-block;background:var(--flap);border-radius:2px;padding:5px 3px;min-width:.9em;text-align:center;margin-right:2px;box-shadow:inset 0 -1px 0 rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04);position:relative}
+.flap::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.55)}
+.stat{font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px}
+.stat::before{content:"";width:8px;height:8px;border-radius:50%;background:#8D9AA6}
+.stat.landed{color:#B9C4CD}
+.stat.air{color:#7FD8A4}
+.stat.air::before{background:#7FD8A4;animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.boardnote{margin:14px 0 0;font-size:13px;color:#8D9AA6}
+
+/* ---------- route strip ---------- */
+.route{padding-block:44px 8px}
+.route ol{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.route ol::before{content:"";position:absolute;left:10%;right:10%;top:15px;border-top:2px dashed var(--rule)}
+.route li{position:relative;text-align:center;padding:0 6px}
+.route .dot{width:32px;height:32px;margin:0 auto 10px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center;font:700 10px/1 var(--mono);position:relative}
+.route li:last-child .dot{background:var(--ink);color:var(--paper)}
+.route .iata{font:800 26px/1 var(--display);letter-spacing:.06em}
+.route .what{font-size:14px;color:var(--muted);line-height:1.4;margin-top:4px}
+
+/* ---------- case studies ---------- */
+.cases{padding-block:40px 20px;display:grid;gap:34px}
+.sechead{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}
+.sechead h2{font:800 clamp(34px,5vw,48px)/1 var(--display);text-transform:uppercase;margin:0}
+.pass{background:var(--card);border:1px solid var(--rule);border-radius:6px;overflow:hidden;scroll-margin-top:20px}
+.stub{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:18px 24px;border-bottom:1px dashed var(--rule)}
+.stub .bigcode{font:800 44px/1 var(--display);letter-spacing:.04em;color:var(--accent)}
+.stub h3{font:700 clamp(21px,2.6vw,26px)/1.2 var(--body);margin:0;text-wrap:balance}
+.stub .meta{margin-top:4px;font-size:14px;color:var(--muted)}
+.stub .stat{justify-self:end}
+.stub .stat.landed{color:var(--muted)}
+.stub .stat.air{color:var(--live)}
+.stub .stat.air::before{background:var(--live)}
+.body{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:0}
+.fields{padding:22px 24px;display:grid;gap:16px}
+.field{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px}
+.field .label{padding-top:5px}
+.field p{margin:0;max-width:62ch}
+.field ul{margin:0;padding-left:18px}
+.field li+li{margin-top:4px}
+.side{border-left:1px dashed var(--rule);padding:22px 24px;display:flex;flex-direction:column;gap:18px}
+.nums{display:grid;gap:14px}
+.num b{display:block;font:800 clamp(38px,4.6vw,50px)/.95 var(--display);letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.num span{font-size:14px;color:var(--muted);line-height:1.35;display:block;margin-top:4px}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.tools span{font:500 12px/1 var(--mono);padding:6px 8px;border:1px solid var(--rule);border-radius:2px;color:var(--muted)}
+.fine{font-size:13px;color:var(--muted);margin:0}
+blockquote{margin:0;padding:0 0 0 14px;border-left:3px solid var(--accent);font-style:italic}
+
+/* ---------- toolkit + footer ---------- */
+.kit{padding-block:30px 10px}
+.kitgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:16px}
+.kitgrid h3{font:700 15px/1.2 var(--body);margin:0 0 6px}
+.kitgrid p{margin:0;color:var(--muted);font-size:15px}
+footer{margin-top:50px;border-top:1px solid var(--rule);padding-block:28px 40px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer p{margin:0;color:var(--muted);font-size:14px}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .row{grid-template-columns:70px 1fr 104px;row-gap:6px}
+  .row .code{display:none}
+  .row .fig{grid-column:2;grid-row:2}
+  .row .stat{grid-column:3;grid-row:1}
+  .row.headrow{display:none}
+  .body{grid-template-columns:1fr}
+  .side{border-left:0;border-top:1px dashed var(--rule)}
+  .nums{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kitgrid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .row{grid-template-columns:1fr auto}
+  .row .when{grid-column:1;grid-row:1;font-size:12px}
+  .row .proj{grid-column:1 / -1;grid-row:2}
+  .row .fig{grid-column:1;grid-row:3}
+  .row .stat{grid-column:2;grid-row:1}
+  .flap{padding:4px 2px}
+  .route ol{grid-template-columns:1fr;gap:14px}
+  .route ol::before{left:15px;right:auto;top:10px;bottom:10px;border-top:0;border-left:2px dashed var(--rule)}
+  .route li{display:grid;grid-template-columns:32px auto 1fr;gap:12px;align-items:center;text-align:left;padding:0}
+  .route .dot{margin:0}
+  .route .what{margin:0}
+  .stub{grid-template-columns:1fr auto;padding:16px 18px}
+  .stub .bigcode{font-size:34px;grid-row:1}
+  .stub > div{grid-column:1 / -1;grid-row:2}
+  .stub .stat{grid-row:1;grid-column:2}
+  .fields,.side{padding:18px}
+  .field{grid-template-columns:1fr;gap:4px}
+  .field .label{padding-top:0}
+  .nums{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#">Steve <span>Wu</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#board">Projects</a>
+      <a href="#route">Route</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="https://www.linkedin.com/in/juanxiwu" rel="noopener">LinkedIn ↗</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="label">Supply chain · Procurement · Operations</p>
+    <h1>Steve (Juanxi) Wu.<br><em>Messy ops in.</em><br>Systems out.</h1>
+    <p class="lede">I take operations that run on scattered spreadsheets and handoffs, and turn them into systems people actually use.</p>
+    <div class="facts">
+      <span><b>ASU W. P. Carey</b> · Honors Supply Chain Management · 2027</span>
+      <span><b>Incoming Analyst, Procurement</b> · American Airlines</span>
+      <span><b>President</b> · ASU Student Entrepreneurship Organization</span>
+    </div>
+    <div class="cta">
+      <a class="btn solid" href="#board">See the projects ↓</a>
+      <a class="btn" href="https://www.linkedin.com/in/juanxiwu" rel="noopener">Connect on LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="boardband" id="board" aria-labelledby="boardtitle">
+  <div class="wrap">
+    <div class="boardhead">
+      <h2 id="boardtitle">Departures</h2>
+      <span class="label">7 projects · tap a row for the case study</span>
+    </div>
+    <div class="rows" role="list">
+      <div class="row headrow" aria-hidden="true"><span>When</span><span>Project</span><span>From</span><span>Headline</span><span>Status</span></div>
+      <a class="row" role="listitem" href="#aa"><span class="when">SU 2026</span><span class="proj">American Airlines · hardware roadmap &amp; refresh standard</span><span class="code" data-flap="DFW">DFW</span><span class="fig" data-flap="$1.14M SAVED">$1.14M SAVED</span><span class="stat landed">Landed</span></a>
+      <a class="row" role="listitem" href="#deloitte"><span class="when">FA 2025</span><span class="proj">Deloitte-sponsored case · post-merger procurement synergy</span><span class="code" data-flap="PHX">PHX</span><span class="fig" data-flap="$585M FOUND">$585M FOUND</span><span class="stat landed">Landed</span></a>
+      <a class="row" role="listitem" href="#levis"><span class="when">SP 2026</span><span class="proj">Levi's × Bocconi · EMEA retail &amp; product strategy</span><span class="code" data-flap="MIL">MIL</span><span class="fig" data-flap="HONORS">HONORS</span><span class="stat landed">Landed</span></a>
+      <a class="row" role="listitem" href="#askoll"><span class="when">SP 2026</span><span class="proj">Askoll EVA · CRM platform &amp; partner decision</span><span class="code" data-flap="MIL">MIL</span><span class="fig" data-flap="3 BIDS → 1">3 BIDS → 1</span><span class="stat landed">Landed</span></a>
+      <a class="row" role="listitem" href="#erp"><span class="when">2025 →</span><span class="proj">Six-module ERP for a student organization · honors thesis</span><span class="code" data-flap="PHX">PHX</span><span class="fig" data-flap="30+ EVENTS/YR">30+ EVENTS/YR</span><span class="stat air">In flight</span></a>
+      <a class="row" role="listitem" href="#fineprint"><span class="when">FA 2026</span><span class="proj">THE FINE PRINT · a negotiation game I designed</span><span class="code" data-flap="PHX">PHX</span><span class="fig" data-flap="24 PLAYERS">24 PLAYERS</span><span class="stat air">In flight</span></a>
+      <a class="row" role="listitem" href="#seo"><span class="when">2024 →</span><span class="proj">Student Entrepreneurship Organization · events &amp; partnerships</span><span class="code" data-flap="PHX">PHX</span><span class="fig" data-flap="194 RSVPS">194 RSVPS</span><span class="stat air">In flight</span></a>
+    </div>
+    <p class="boardnote">Codes are where the work happened: DFW Dallas–Fort Worth, PHX Tempe/Phoenix, MIL Milan.</p>
+  </div>
+</section>
+
+<section class="route" id="route" aria-labelledby="routetitle">
+  <div class="wrap">
+    <p class="label" id="routetitle">The route so far</p>
+    <ol>
+      <li><div class="dot">23</div><div class="iata">PHX</div><div class="what">ASU, Tempe · Barrett Honors · since 2023</div></li>
+      <li><div class="dot">24</div><div class="iata">CPH</div><div class="what">Copenhagen Business School · exchange</div></li>
+      <li><div class="dot">25</div><div class="iata">CAN</div><div class="what">Miniso, Guangzhou · global planning &amp; supply intern</div></li>
+      <li><div class="dot">26</div><div class="iata">MIL</div><div class="what">Bocconi University, Milan · exchange</div></li>
+      <li><div class="dot">27</div><div class="iata">DFW</div><div class="what">American Airlines · intern 2026, full-time 2027</div></li>
+    </ol>
+  </div>
+</section>
+
+<main class="wrap cases" aria-labelledby="casestitle">
+  <div class="sechead">
+    <h2 id="casestitle">Case studies</h2>
+    <span class="label">Problem → Approach → Output → Result → Tools</span>
+  </div>
+
+  <!-- AA -->
+  <article class="pass" id="aa">
+    <div class="stub">
+      <div class="bigcode">DFW</div>
+      <div><h3>American Airlines: hardware roadmap &amp; device refresh standard</h3><div class="meta">Technology Procurement Intern · June–August 2026 · returning full-time 2027</div></div>
+      <span class="stat landed">Landed</span>
+    </div>
+    <div class="body">
+      <div class="fields">
+        <div class="field"><span class="label">Problem</span><p>Each business unit planned device refreshes on its own timeline. IT, Finance and the business disagreed on how long devices should last, so procurement saw demand late and bought in small batches.</p></div>
+        <div class="field"><span class="label">Approach</span><ul><li>Combined historical actuals, asset data, contracts and 60+ business cases into one multi-year view</li><li>Modeled consolidated demand for 69K+ iPads and rugged devices to turn scattered refresh plans into volume-based sourcing</li><li>Gathered requirements from 20+ stakeholders across IT, Finance and business units, plus Gartner advisory input</li></ul></div>
+        <div class="field"><span class="label">Output</span><p>A 2026–2031 hardware roadmap across seven device categories, a procurement-led refresh standard, and a lifecycle-governance proposal with an M365 Copilot concept for monitoring hardware market signals. Presented to the Chief Procurement Officer.</p></div>
+      </div>
+      <div class="side">
+        <div class="nums">
+          <div class="num"><b>$1.14M</b><span>potential savings from consolidated demand</span></div>
+          <div class="num"><b>162K</b><span>devices across 7 categories, 2026–2031</span></div>
+          <div class="num"><b>$182M</b><span>spend forecast built from $92.5M of actuals</span></div>
+        </div>
+        <div class="tools"><span>Excel</span><span>Jamf</span><span>SOTI</span><span>ServiceNow</span><span>Coupa</span><span>M365 Copilot</span></div>
+        <p class="fine">Figures match my résumé. Internal data stays with American Airlines.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Deloitte -->
+  <article class="pass" id="deloitte">
+    <div class="stub">
+      <div class="bigcode">PHX</div>
+      <div><h3>Deloitte-sponsored case: post-merger procurement synergy</h3><div class="meta">Project Lead, 6-person team · SCM 345, ASU · Fall 2025</div></div>
+      <span class="stat landed">Landed</span>
+    </div>
+    <div class="body">
+      <div class="fields">
+        <div class="field"><span class="label">Problem</span><p>Two merged companies had promised investors $35M in third-party savings. Their contract data, structures and price baselines didn't line up, so nobody could say whether the target was realistic.</p></div>
+        <div class="field"><span class="label">Approach</span><ul><li>Standardized the combined contract data and calculated each contract's remaining, forward-looking value</li><li>Sorted contracts into four quadrants by expiry timing and whether they allow termination for convenience</li><li>Assigned each contract a sourcing play: Combine Rate, Re-negotiate or Full RFP, with discounts set from internal best prices and external benchmarks</li></ul></div>
+        <div class="field"><span class="label">Output</span><p>A contract-level savings model and a phased plan: quick wins in the first 90 days, RFPs over 3–6 months, then rate resets as long-term contracts expire in 2028–2030.</p></div>
+      </div>
+      <div class="side">
+        <div class="nums">
+          <div class="num"><b>$9.6B</b><span>combined third-party spend analyzed</span></div>
+          <div class="num"><b>$585M</b><span>total savings potential identified</span></div>
+          <div class="num"><b>$310M+</b><span>realistically contractible by 2030</span></div>
+        </div>
+        <div class="tools"><span>Spend analysis</span><span>Contract segmentation</span><span>Excel</span><span>Benchmarking</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Levi's -->
+  <article class="pass" id="levis">
+    <div class="stub">
+      <div class="bigcode">MIL</div>
+      <div><h3>Levi's × Bocconi: from denim authority to personal ownership</h3><div class="meta">Project Lead, 6-person exchange team · Management of Fashion Companies · Spring 2026</div></div>
+      <span class="stat landed">Landed</span>
+    </div>
+    <div class="body">
+      <div class="fields">
+        <div class="field"><span class="label">Problem</span><p>Levi's flagship stores looked more premium than its regular stores but gave shoppers little extra reason to visit. Growth with women and Gen Z needed a retail answer, not only a marketing one.</p></div>
+        <div class="field"><span class="label">Approach</span><ul><li>Benchmarked brand KPIs across the US, UK and Germany</li><li>Compared flagship and regular store journeys, and used an experiential sportswear competitor as an outside benchmark</li></ul></div>
+        <div class="field"><span class="label">Output</span><ul><li><b>Fit ownership:</b> stores organized as find your fit → style the outfit → make it yours at the Tailor Shop</li><li><b>Data ownership:</b> a saved digital fit record, AI support for stylists, and loyalty rewards for repairs and trade-ins</li><li><b>Growth bets:</b> women-led fitting nights, a Gen Z campus pop-up tour, and lighter fabrics for warm-climate summers</li></ul></div>
+      </div>
+      <div class="side">
+        <div class="nums">
+          <div class="num"><b>Honors</b><span>full credits with honors</span></div>
+          <div class="num"><b>3</b><span>markets benchmarked: US, UK, Germany</span></div>
+          <div class="num"><b>2</b><span>Levi's directors on the panel (operations and marketing)</span></div>
+        </div>
+        <div class="tools"><span>Retail strategy</span><span>Consumer insights</span><span>Competitive benchmarking</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Askoll -->
+  <article class="pass" id="askoll">
+    <div class="stub">
+      <div class="bigcode">MIL</div>
+      <div><h3>Askoll EVA: choosing a CRM platform and implementation partner</h3><div class="meta">3-person team · Information Systems Management, Bocconi · Spring 2026</div></div>
+      <span class="stat landed">Landed</span>
+    </div>
+    <div class="body">
+      <div class="fields">
+        <div class="field"><span class="label">Problem</span><p>An Italian e-mobility maker expanding into France and Spain had outgrown its CRM. It had three bids, each a platform plus a partner: Microsoft Business Central, Salesforce and SAP CRM.</p></div>
+        <div class="field"><span class="label">Approach</span><ul><li>Modeled 5-year NPV of total cost of ownership and expected benefits for each bid</li><li>Built a weighted scorecard: strategic fit 33%, implementation feasibility 32%, business capability 20%, partner and governance fit 15%</li><li>Ran the same case through an AI research tool (NotebookLM) and compared its answer with ours</li></ul></div>
+        <div class="field"><span class="label">Output</span><p>Recommended Business Central. Salesforce returned slightly more per euro, but Business Central fit the company's existing Microsoft system and carried the lowest implementation risk. The AI tool reached the same pick but oversimplified the cost trade-off.</p></div>
+      </div>
+      <div class="side">
+        <div class="nums">
+          <div class="num"><b>0.43×</b><span>benefit/cost, Business Central (recommended)</span></div>
+          <div class="num"><b>0.46×</b><span>benefit/cost, Salesforce</span></div>
+          <div class="num"><b>0.27×</b><span>benefit/cost, SAP CRM</span></div>
+        </div>
+        <div class="tools"><span>NPV / TCO</span><span>Decision scorecard</span><span>ERP &amp; CRM strategy</span><span>NotebookLM</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ERP -->
+  <article class="pass" id="erp">
+    <div class="stub">
+      <div class="bigcode">PHX</div>
+      <div><h3>A six-module ERP for a student organization</h3><div class="meta">Designer &amp; owner · 2025–present · foundation of my Barrett honors thesis</div></div>
+      <span class="stat air">In flight</span>
+    </div>
+    <div class="body">
+      <div class="fields">
+        <div class="field"><span class="label">Problem</span><p>Student clubs lose their memory every year when officers graduate. Budgets, vendors and event history lived in scattered spreadsheets and in people's heads.</p></div>
+        <div class="field"><span class="label">Approach</span><ul><li>Designed six modules in Google Sheets: events, membership, inventory, vendors, budget and marketing</li><li>Put every event through one approval pipeline: partner outreach → proposal → marketing review → budget review → approval → execution → feedback</li><li>Added inventory forecasts from consumption rates, attendance points with a member ranking, and a partner tracker</li></ul></div>
+        <div class="field"><span class="label">Output</span><p>The system the Student Entrepreneurship Organization runs on today. My IRB-approved honors thesis studies how a low-cost system like this can keep student organizations running through leadership turnover. Interviews are done; a survey comes next, with the defense in spring 2027.</p></div>
+      </div>
+      <div class="side">
+        <div class="nums">
+          <div class="num"><b>6</b><span>modules in one source of truth</span></div>
+          <div class="num"><b>6</b><span>officers using it</span></div>
+          <div class="num"><b>30+</b><span>events run through it each year</span></div>
+        </div>
+        <div class="tools"><span>Google Sheets</span><span>Process design</span><span>Data modeling</span><span>Qualitative research</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Fine Print -->
+  <article class="pass" id="fineprint">
+    <div class="stub">
+      <div class="bigcode">PHX</div>
+      <div><h3>THE FINE PRINT: a campus negotiation game</h3><div class="meta">Game designer &amp; facilitator · Student Entrepreneurship Organization · Fall 2026</div></div>
+      <span class="stat air">In flight</span>
+    </div>
+    <div class="body">
+      <div class="fields">
+        <div class="field"><span class="label">Problem</span><p>My first simulation for the club, with six confidential executive roles and a scoring system, was too complex to teach and play in one evening.</p></div>
+        <div class="field"><span class="label">Approach</span><p>I rebuilt it from scratch around one mechanic. Six two-person startup teams need three signed partners (money, distribution and delivery) to reach Demo Day. Twelve partners can each sign only two ventures, and every player carries a hidden clause.</p></div>
+        <div class="field"><span class="label">The rule</span><blockquote>If you are asked, you must answer honestly. If nobody asks, you owe nobody anything.</blockquote></div>
+        <div class="field"><span class="label">Output</span><p>A web app where each player opens a private role card with a 4-digit code. Facilitators get a master sheet with a conflict matrix, multiple endings and three debrief questions. A mid-game reveal shows which deals were built on questions nobody asked.</p></div>
+      </div>
+      <div class="side">
+        <div class="nums">
+          <div class="num"><b>24</b><span>players: 12 founders, 12 partners</span></div>
+          <div class="num"><b>6</b><span>ventures racing for 3 signatures each</span></div>
+          <div class="num"><b>1</b><span>rule that drives the whole game</span></div>
+        </div>
+        <div class="tools"><span>Game design</span><span>HTML / JS</span><span>Facilitation</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SEO -->
+  <article class="pass" id="seo">
+    <div class="stub">
+      <div class="bigcode">PHX</div>
+      <div><h3>Student Entrepreneurship Organization: events &amp; partnerships</h3><div class="meta">President · January 2024–present</div></div>
+      <span class="stat air">In flight</span>
+    </div>
+    <div class="body">
+      <div class="fields">
+        <div class="field"><span class="label">Problem</span><p>A small officer team with a tight budget, running events that needed speakers, venues, funding and an audience at the same time.</p></div>
+        <div class="field"><span class="label">Approach</span><ul><li>Launched the club's first VIP Speaker Series with serial entrepreneur Marc Lore, co-run with Changemaker Central and the Business School Council</li><li>Wrote an 11-part post-mortem afterwards that became our event-planning playbook</li><li>Set a partner model: a standard partnership fee, and every visiting company teaches a real skill session, not just a recruiting pitch</li></ul></div>
+        <div class="field"><span class="label">Output</span><p>A Fall 2026 lineup with a speaker series, a simulation workshop, a Failure Workshop, a company visit and a Shark Tank–style idea competition among the officers.</p></div>
+      </div>
+      <div class="side">
+        <div class="nums">
+          <div class="num"><b>194</b><span>RSVPs for the Marc Lore speaker event</span></div>
+          <div class="num"><b>$10K+</b><span>in sponsorships across 9+ large events</span></div>
+          <div class="num"><b>−12%</b><span>cost overruns after tighter POs and logistics</span></div>
+        </div>
+        <div class="tools"><span>Partnerships</span><span>Event operations</span><span>Budgeting</span><span>Marketing</span></div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<section class="kit" id="toolkit" aria-labelledby="kittitle">
+  <div class="wrap">
+    <div class="sechead"><h2 id="kittitle">Toolkit</h2><span class="label">Mandarin · Cantonese · English</span></div>
+    <div class="kitgrid">
+      <div><h3>Procurement &amp; operations</h3><p>SAP · Coupa · Levelpath · ServiceNow · Jamf · SOTI</p></div>
+      <div><h3>Data &amp; analysis</h3><p>Excel (Power Query, PivotTables, VBA) · SQL · Power BI · Tableau · FineBI · Python</p></div>
+      <div><h3>AI at work</h3><p>Microsoft 365 Copilot · Claude · NotebookLM. I built myself a contact app that reminds me to follow up with people at 1, 3 and 6 months.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Looking for operations and supply chain strategy work where the data is messy and there's no answer key yet.</p>
+    <a class="btn" href="https://www.linkedin.com/in/juanxiwu" rel="noopener">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script>
+/* Split-flap effect on the departure board. The final text is already in the page,
+   so the board reads correctly even if this never runs. */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+.→/';
+  var cells = document.querySelectorAll('[data-flap]');
+  cells.forEach(function(el, row){
+    var text = el.getAttribute('data-flap');
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+    var spans = [];
+    for (var i = 0; i < text.length; i++){
+      var s = document.createElement('span');
+      s.setAttribute('aria-hidden','true');
+      if (text[i] === ' '){ s.textContent = ' '; s.style.marginRight = '4px'; }
+      else { s.className = 'flap'; s.textContent = text[i]; }
+      el.appendChild(s); spans.push([s, text[i]]);
+    }
+    if (reduce) return;
+    spans.forEach(function(pair, i){
+      var s = pair[0], ch = pair[1];
+      if (ch === ' ') return;
+      var flips = 6 + ((i * 3 + row * 5) % 9), n = 0;
+      var t = setInterval(function(){
+        n++;
+        if (n >= flips){ s.textContent = ch; clearInterval(t); }
+        else { s.textContent = CH[Math.floor(Math.random()*CH.length)]; }
+      }, 55 + row * 4);
+    });
+  });
+})();
+</script>
+</body>
+</html>
