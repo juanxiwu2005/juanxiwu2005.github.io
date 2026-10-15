@@ -141,6 +141,35 @@ footer{margin-top:50px;border-top:1px solid var(--rule);padding-block:28px 40px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
 footer p{margin:0;color:var(--muted);font-size:14px}
 
+/* ---------- hero photo ---------- */
+.herogrid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:40px;align-items:end}
+.portrait{margin:0;position:relative}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:4px;border:1px solid var(--rule)}
+.portrait figcaption{position:absolute;left:10px;bottom:10px;font:700 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;background:var(--board);color:var(--flaptext);padding:7px 9px;border-radius:2px}
+
+/* ---------- media inside case studies ---------- */
+.media{border-top:1px dashed var(--rule);padding:22px 24px 24px;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.media.two{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+.media figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.media img{display:block;width:100%;height:auto;max-width:100%;border-radius:4px;border:1px solid var(--rule);background:var(--paper)}
+.media figcaption{font-size:13px;color:var(--muted);line-height:1.4}
+.media .wide{grid-column:1 / -1}
+.chart{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--paper);padding:14px 14px 8px}
+.chart svg{display:block;width:100%;min-width:520px;height:auto}
+.chart .t-ink{fill:var(--ink)} .chart .t-mut{fill:var(--muted)}
+.chart .g{stroke:var(--rule);stroke-width:1}
+.chart .acc{fill:var(--accent)} .chart .soft{fill:var(--muted);opacity:.45}
+.chart .box{fill:var(--card);stroke:var(--rule);stroke-width:1.5}
+.chart .box.hl{stroke:var(--accent);stroke-width:2}
+.chart .box.fill{fill:var(--accent);stroke:var(--accent)}
+.chart .on-acc{fill:var(--paper)}
+.chart .ln{stroke:var(--muted);stroke-width:1.5;fill:none}
+.chart text{font-family:var(--body)}
+.chart .mono{font-family:var(--mono)}
+.chart rect.bar:hover{opacity:.8}
+.award{display:flex;align-items:center;gap:10px;margin:0 24px;padding:12px 14px;border:1px solid var(--accent);border-radius:4px;font-weight:600}
+.award b{font:800 22px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+
 /* ---------- responsive ---------- */
 @media (max-width:860px){
   .row{grid-template-columns:70px 1fr 104px;row-gap:6px}
@@ -152,6 +181,12 @@ footer p{margin:0;color:var(--muted);font-size:14px}
   .side{border-left:0;border-top:1px dashed var(--rule)}
   .nums{grid-template-columns:repeat(3,minmax(0,1fr))}
   .kitgrid{grid-template-columns:1fr}
+  .herogrid{grid-template-columns:minmax(0,1fr) 220px;gap:24px}
+  .media.two{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .herogrid{grid-template-columns:1fr}
+  .portrait{max-width:220px;order:-1}
 }
 @media (max-width:560px){
   body{font-size:16px}
@@ -174,6 +209,8 @@ footer p{margin:0;color:var(--muted);font-size:14px}
   .field{grid-template-columns:1fr;gap:4px}
   .field .label{padding-top:0}
   .nums{grid-template-columns:1fr}
+  .media{padding:16px 18px 18px}
+  .award{margin:0 18px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -193,7 +230,8 @@ footer p{margin:0;color:var(--muted);font-size:14px}
 </header>
 
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap herogrid">
+    <div>
     <p class="label">Supply chain · Procurement · Operations</p>
     <h1>Steve (Juanxi) Wu.<br><em>Messy ops in.</em><br>Systems out.</h1>
     <p class="lede">I take operations that run on scattered spreadsheets and handoffs, and turn them into systems people actually use.</p>
@@ -206,6 +244,11 @@ footer p{margin:0;color:var(--muted);font-size:14px}
       <a class="btn solid" href="#board">See the projects ↓</a>
       <a class="btn" href="https://www.linkedin.com/in/juanxiwu" rel="noopener">Connect on LinkedIn ↗</a>
     </div>
+    </div>
+    <figure class="portrait">
+      <img src="assets/steve-headshot.jpg" alt="Portrait of Steve (Juanxi) Wu in a suit, smiling" width="720" height="900">
+      <figcaption>Passenger · S. Wu</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -223,7 +266,7 @@ footer p{margin:0;color:var(--muted);font-size:14px}
       <a class="row" role="listitem" href="#askoll"><span class="when">SP 2026</span><span class="proj">Askoll EVA · CRM platform &amp; partner decision</span><span class="code" data-flap="MIL">MIL</span><span class="fig" data-flap="3 BIDS → 1">3 BIDS → 1</span><span class="stat landed">Landed</span></a>
       <a class="row" role="listitem" href="#erp"><span class="when">2025 →</span><span class="proj">Six-module ERP for a student organization · honors thesis</span><span class="code" data-flap="PHX">PHX</span><span class="fig" data-flap="30+ EVENTS/YR">30+ EVENTS/YR</span><span class="stat air">In flight</span></a>
       <a class="row" role="listitem" href="#fineprint"><span class="when">FA 2026</span><span class="proj">THE FINE PRINT · a negotiation game I designed</span><span class="code" data-flap="PHX">PHX</span><span class="fig" data-flap="24 PLAYERS">24 PLAYERS</span><span class="stat air">In flight</span></a>
-      <a class="row" role="listitem" href="#seo"><span class="when">2024 →</span><span class="proj">Student Entrepreneurship Organization · events &amp; partnerships</span><span class="code" data-flap="PHX">PHX</span><span class="fig" data-flap="194 RSVPS">194 RSVPS</span><span class="stat air">In flight</span></a>
+      <a class="row" role="listitem" href="#seo"><span class="when">2024 →</span><span class="proj">Student Entrepreneurship Organization · events &amp; partnerships</span><span class="code" data-flap="PHX">PHX</span><span class="fig" data-flap="AWARD WINNER">AWARD WINNER</span><span class="stat air">In flight</span></a>
     </div>
     <p class="boardnote">Codes are where the work happened: DFW Dallas–Fort Worth, PHX Tempe/Phoenix, MIL Milan.</p>
   </div>
@@ -271,6 +314,41 @@ footer p{margin:0;color:var(--muted);font-size:14px}
         <p class="fine">Figures match my résumé. Internal data stays with American Airlines.</p>
       </div>
     </div>
+    <div class="media">
+      <figure class="wide">
+        <div class="chart">
+          <svg viewBox="0 0 680 262" role="img" aria-labelledby="aaT aaD">
+            <title id="aaT">How the refresh standard changes buying</title>
+            <desc id="aaD">Before: each business unit plans on its own timeline and places small purchase orders. After: IT, Finance and business units agree on one refresh standard, demand for 69K+ devices is consolidated, and sourcing is done by volume for $1.14M in potential savings.</desc>
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--muted)"/></marker></defs>
+            <text x="0" y="16" class="t-mut mono" style="font-size:12px;font-weight:700;letter-spacing:.14em">BEFORE</text>
+            <g style="font-size:13px">
+              <rect class="box" x="0" y="34" width="132" height="38" rx="3"/><text x="66" y="58" text-anchor="middle" class="t-ink">Unit A plan</text>
+              <rect class="box" x="0" y="90" width="132" height="38" rx="3"/><text x="66" y="114" text-anchor="middle" class="t-ink">Unit B plan</text>
+              <rect class="box" x="0" y="146" width="132" height="38" rx="3"/><text x="66" y="170" text-anchor="middle" class="t-ink">Unit C plan</text>
+              <path class="ln" d="M134,53 H178" marker-end="url(#arr)"/><path class="ln" d="M134,109 H178" marker-end="url(#arr)"/><path class="ln" d="M134,165 H178" marker-end="url(#arr)"/>
+              <rect class="box" x="182" y="34" width="118" height="38" rx="3"/><text x="241" y="58" text-anchor="middle" class="t-ink">Small PO</text>
+              <rect class="box" x="182" y="90" width="118" height="38" rx="3"/><text x="241" y="114" text-anchor="middle" class="t-ink">Small PO</text>
+              <rect class="box" x="182" y="146" width="118" height="38" rx="3"/><text x="241" y="170" text-anchor="middle" class="t-ink">Small PO</text>
+              <text x="0" y="212" class="t-mut">Each unit buys on its own clock.</text>
+              <text x="0" y="230" class="t-mut">Finance and IT argue timing every budget cycle.</text>
+            </g>
+            <line x1="330" y1="10" x2="330" y2="250" class="g" stroke-dasharray="4 4"/>
+            <text x="360" y="16" class="t-mut mono" style="font-size:12px;font-weight:700;letter-spacing:.14em">AFTER</text>
+            <g style="font-size:13px">
+              <rect class="box" x="360" y="30" width="320" height="38" rx="3"/><text x="520" y="54" text-anchor="middle" class="t-ink">IT · Finance · Business units agree up front</text>
+              <path class="ln" d="M520,70 V86" marker-end="url(#arr)"/>
+              <rect class="box hl" x="360" y="90" width="320" height="38" rx="3"/><text x="520" y="114" text-anchor="middle" class="t-ink" style="font-weight:600">One refresh standard</text>
+              <path class="ln" d="M520,130 V146" marker-end="url(#arr)"/>
+              <rect class="box" x="360" y="150" width="320" height="38" rx="3"/><text x="520" y="174" text-anchor="middle" class="t-ink">Consolidated demand · 69K+ iPads &amp; rugged devices</text>
+              <path class="ln" d="M520,190 V206" marker-end="url(#arr)"/>
+              <rect class="box fill" x="360" y="210" width="320" height="38" rx="3"/><text x="520" y="234" text-anchor="middle" class="on-acc" style="font-weight:700">Volume sourcing · $1.14M potential savings</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>The idea in one picture. Agree on the refresh standard first, so procurement can buy in volume instead of reacting to each unit.</figcaption>
+      </figure>
+    </div>
   </article>
 
   <!-- Deloitte -->
@@ -294,6 +372,47 @@ footer p{margin:0;color:var(--muted);font-size:14px}
         </div>
         <div class="tools"><span>Spend analysis</span><span>Contract segmentation</span><span>Excel</span><span>Benchmarking</span></div>
       </div>
+    </div>
+    <div class="media two">
+      <figure>
+        <div class="chart">
+          <svg viewBox="0 0 560 290" role="img" aria-labelledby="dlT dlD">
+            <title id="dlT">Cumulative contractible savings by year</title>
+            <desc id="dlD">Cumulative savings: 2025 $34M, 2026 $133M, 2027 $146M from quick wins; 2028 $149M, 2029 $230M, 2030 $310M from structural contract resets.</desc>
+            <g style="font-size:12px">
+              <rect x="40" y="6" width="12" height="12" rx="2" class="acc"/><text x="58" y="16" class="t-ink">Quick wins: Combine Rate + RFP</text>
+              <rect x="290" y="6" width="12" height="12" rx="2" class="soft"/><text x="308" y="16" class="t-ink">Structural resets as contracts expire</text>
+            </g>
+            <g class="mono" style="font-size:11px">
+              <line x1="40" y1="250" x2="556" y2="250" class="g"/><text x="34" y="254" text-anchor="end" class="t-mut">$0</text>
+              <line x1="40" y1="187.5" x2="556" y2="187.5" class="g" stroke-dasharray="2 4"/><text x="34" y="191.5" text-anchor="end" class="t-mut">$100M</text>
+              <line x1="40" y1="125" x2="556" y2="125" class="g" stroke-dasharray="2 4"/><text x="34" y="129" text-anchor="end" class="t-mut">$200M</text>
+              <line x1="40" y1="62.5" x2="556" y2="62.5" class="g" stroke-dasharray="2 4"/><text x="34" y="66.5" text-anchor="end" class="t-mut">$300M</text>
+            </g>
+            <g>
+              <rect class="bar acc" x="64" y="228.75" width="58" height="21.25" rx="3"><title>2025: $34M</title></rect>
+              <rect class="bar acc" x="146" y="166.9" width="58" height="83.1" rx="3"><title>2026: $133M</title></rect>
+              <rect class="bar acc" x="228" y="158.75" width="58" height="91.25" rx="3"><title>2027: $146M</title></rect>
+              <rect class="bar soft" x="310" y="156.9" width="58" height="93.1" rx="3"><title>2028: $149M</title></rect>
+              <rect class="bar soft" x="392" y="106.25" width="58" height="143.75" rx="3"><title>2029: $230M</title></rect>
+              <rect class="bar soft" x="474" y="56.25" width="58" height="193.75" rx="3"><title>2030: $310M</title></rect>
+            </g>
+            <g class="mono" style="font-size:12px;font-weight:700" text-anchor="middle">
+              <text x="93" y="222" class="t-ink">$34M</text><text x="175" y="160" class="t-ink">$133M</text><text x="257" y="152" class="t-ink">$146M</text>
+              <text x="339" y="150" class="t-ink">$149M</text><text x="421" y="99" class="t-ink">$230M</text><text x="503" y="49" class="t-ink">$310M</text>
+            </g>
+            <g class="mono" style="font-size:12px" text-anchor="middle">
+              <text x="93" y="270" class="t-mut">2025</text><text x="175" y="270" class="t-mut">2026</text><text x="257" y="270" class="t-mut">2027</text>
+              <text x="339" y="270" class="t-mut">2028</text><text x="421" y="270" class="t-mut">2029</text><text x="503" y="270" class="t-mut">2030</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>Cumulative contractible savings, from our model. Quick wins land first; the bigger step comes as long-term contracts reset.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/deloitte-quadrants.jpg" alt="Slide: contracts segmented into four quadrants by expiry date and termination-for-convenience clause, each with a sourcing strategy" width="1400" height="788" loading="lazy">
+        <figcaption>Our segmentation slide: addressable spend by expiry timing and termination clause, with the sourcing play for each quadrant.</figcaption>
+      </figure>
     </div>
   </article>
 
@@ -319,6 +438,16 @@ footer p{margin:0;color:var(--muted);font-size:14px}
         <div class="tools"><span>Retail strategy</span><span>Consumer insights</span><span>Competitive benchmarking</span></div>
       </div>
     </div>
+    <div class="media">
+      <figure>
+        <img src="assets/levis-moodboard.jpg" alt="Team mood board for the Levi's project: denim, heritage, sustainability and inclusivity themes" width="1400" height="933" loading="lazy">
+        <figcaption>Our team's mood board: heritage, freedom and sustainability as the brand pillars we built on.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/levis-data-ownership.jpg" alt="Slide: Data Ownership, with a saved digital fit record, AI support for stylists and loyalty rewards for in-store actions" width="1400" height="788" loading="lazy">
+        <figcaption>From our final deck: turning one-off fittings into a saved fit profile that every visit builds on.</figcaption>
+      </figure>
+    </div>
   </article>
 
   <!-- Askoll -->
@@ -343,6 +472,34 @@ footer p{margin:0;color:var(--muted);font-size:14px}
         <div class="tools"><span>NPV / TCO</span><span>Decision scorecard</span><span>ERP &amp; CRM strategy</span><span>NotebookLM</span></div>
       </div>
     </div>
+    <div class="media two">
+      <figure>
+        <img src="assets/askoll-framework.jpg" alt="Slide: non-financial evaluation framework with four weighted pillars: strategic fit 33%, implementation feasibility 32%, business capability 20%, partner and governance fit 15%" width="1400" height="788" loading="lazy">
+        <figcaption>Our weighting framework. Strategic fit and implementation feasibility carry two-thirds of the score, because ERP and CRM projects usually fail in execution.</figcaption>
+      </figure>
+      <figure>
+        <div class="chart">
+          <svg viewBox="0 0 420 200" role="img" aria-labelledby="akT akD" style="min-width:360px">
+            <title id="akT">Benefit-to-cost ratio by bid</title>
+            <desc id="akD">Five-year benefit to cost ratio: Business Central 0.43, Salesforce 0.46, SAP CRM 0.27.</desc>
+            <g style="font-size:13px">
+              <text x="0" y="40" class="t-ink" style="font-weight:600">Business Central</text>
+              <text x="0" y="96" class="t-ink">Salesforce</text>
+              <text x="0" y="152" class="t-ink">SAP CRM</text>
+            </g>
+            <line x1="130" y1="16" x2="130" y2="172" class="g"/>
+            <rect class="bar acc" x="131" y="24" width="215" height="24" rx="3"><title>Business Central: 0.43×</title></rect>
+            <rect class="bar soft" x="131" y="80" width="230" height="24" rx="3"><title>Salesforce: 0.46×</title></rect>
+            <rect class="bar soft" x="131" y="136" width="135" height="24" rx="3"><title>SAP CRM: 0.27×</title></rect>
+            <g class="mono" style="font-size:12px;font-weight:700">
+              <text x="352" y="41" class="t-ink">0.43×</text><text x="367" y="97" class="t-ink">0.46×</text><text x="272" y="153" class="t-ink">0.27×</text>
+            </g>
+            <text x="0" y="194" class="t-mut" style="font-size:12px">5-year benefit ÷ cost. Recommended bid highlighted.</text>
+          </svg>
+        </div>
+        <figcaption>Salesforce paid back slightly more per euro, but we still recommended Business Central because it fit the company's existing systems and carried less risk.</figcaption>
+      </figure>
+    </div>
   </article>
 
   <!-- ERP -->
@@ -366,6 +523,30 @@ footer p{margin:0;color:var(--muted);font-size:14px}
         </div>
         <div class="tools"><span>Google Sheets</span><span>Process design</span><span>Data modeling</span><span>Qualitative research</span></div>
       </div>
+    </div>
+    <div class="media">
+      <figure class="wide">
+        <div class="chart">
+          <svg viewBox="0 0 680 236" role="img" aria-labelledby="erT erD">
+            <title id="erT">How the six ERP modules connect</title>
+            <desc id="erD">Six modules (events, membership, inventory, vendors, budget, marketing) all feed one dashboard that officers use as the single source of truth.</desc>
+            <g class="ln">
+              <path d="M110,52 L300,96"/><path d="M340,52 V96"/><path d="M570,52 L380,96"/>
+              <path d="M110,184 L300,140"/><path d="M340,184 V140"/><path d="M570,184 L380,140"/>
+            </g>
+            <g style="font-size:13px" text-anchor="middle">
+              <rect class="box" x="20" y="10" width="180" height="42" rx="3"/><text x="110" y="29" class="t-ink" style="font-weight:600">Events</text><text x="110" y="45" class="t-mut" style="font-size:11px">schedule · approval pipeline</text>
+              <rect class="box" x="250" y="10" width="180" height="42" rx="3"/><text x="340" y="29" class="t-ink" style="font-weight:600">Membership</text><text x="340" y="45" class="t-mut" style="font-size:11px">attendance points · ranking</text>
+              <rect class="box" x="480" y="10" width="180" height="42" rx="3"/><text x="570" y="29" class="t-ink" style="font-weight:600">Inventory</text><text x="570" y="45" class="t-mut" style="font-size:11px">stock · demand from usage</text>
+              <rect class="box fill" x="250" y="96" width="180" height="44" rx="3"/><text x="340" y="116" class="on-acc" style="font-weight:700">Dashboard</text><text x="340" y="132" class="on-acc" style="font-size:11px">one source of truth</text>
+              <rect class="box" x="20" y="184" width="180" height="42" rx="3"/><text x="110" y="203" class="t-ink" style="font-weight:600">Vendors</text><text x="110" y="219" class="t-mut" style="font-size:11px">partner tracker · follow-ups</text>
+              <rect class="box" x="250" y="184" width="180" height="42" rx="3"/><text x="340" y="203" class="t-ink" style="font-weight:600">Budget</text><text x="340" y="219" class="t-mut" style="font-size:11px">estimate vs actual ledger</text>
+              <rect class="box" x="480" y="184" width="180" height="42" rx="3"/><text x="570" y="203" class="t-ink" style="font-weight:600">Marketing</text><text x="570" y="219" class="t-mut" style="font-size:11px">channels · deadlines</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>System map of the ERP. Screenshots stay private because the live sheet holds members' personal details.</figcaption>
+      </figure>
     </div>
   </article>
 
@@ -392,6 +573,16 @@ footer p{margin:0;color:var(--muted);font-size:14px}
         <div class="tools"><span>Game design</span><span>HTML / JS</span><span>Facilitation</span></div>
       </div>
     </div>
+    <div class="media">
+      <figure>
+        <img src="assets/fineprint-gate.jpg" alt="Game start screen: THE FINE PRINT, enter your 4-digit code, with the one rule shown below" width="620" height="720" loading="lazy">
+        <figcaption>Start screen. Each player types the code on their slip to open a private role.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fineprint-role-card.jpg" alt="A confidential role card for a founder, with the stage, who you are, your team and what you need tonight" width="620" height="1000" loading="lazy">
+        <figcaption>A founder's role card. The red line further down is the hidden clause they hope nobody asks about.</figcaption>
+      </figure>
+    </div>
   </article>
 
   <!-- SEO -->
@@ -401,10 +592,11 @@ footer p{margin:0;color:var(--muted);font-size:14px}
       <div><h3>Student Entrepreneurship Organization: events &amp; partnerships</h3><div class="meta">President · January 2024–present</div></div>
       <span class="stat air">In flight</span>
     </div>
+    <p class="award" style="margin-top:20px"><b>Program of the Year</b> W. P. Carey School of Business award for our Speaker Series with Marc Lore</p>
     <div class="body">
       <div class="fields">
         <div class="field"><span class="label">Problem</span><p>A small officer team with a tight budget, running events that needed speakers, venues, funding and an audience at the same time.</p></div>
-        <div class="field"><span class="label">Approach</span><ul><li>Launched the club's first VIP Speaker Series with serial entrepreneur Marc Lore, co-run with Changemaker Central and the Business School Council</li><li>Wrote an 11-part post-mortem afterwards that became our event-planning playbook</li><li>Set a partner model: a standard partnership fee, and every visiting company teaches a real skill session, not just a recruiting pitch</li></ul></div>
+        <div class="field"><span class="label">Approach</span><ul><li>Launched the club's first VIP Speaker Series with serial entrepreneur Marc Lore, co-run with Changemaker Central and the Business School Council. It went on to win W. P. Carey's Program of the Year.</li><li>Wrote an 11-part post-mortem afterwards that became our event-planning playbook</li><li>Set a partner model: a standard partnership fee, and every visiting company teaches a real skill session, not just a recruiting pitch</li></ul></div>
         <div class="field"><span class="label">Output</span><p>A Fall 2026 lineup with a speaker series, a simulation workshop, a Failure Workshop, a company visit and a Shark Tank–style idea competition among the officers.</p></div>
       </div>
       <div class="side">
@@ -415,6 +607,42 @@ footer p{margin:0;color:var(--muted);font-size:14px}
         </div>
         <div class="tools"><span>Partnerships</span><span>Event operations</span><span>Budgeting</span><span>Marketing</span></div>
       </div>
+    </div>
+    <div class="media two">
+      <figure>
+        <img src="assets/seo-program-of-the-year.jpg" alt="Steve and three fellow officers in suits holding the Program of the Year awards at the W. P. Carey ceremony" width="1400" height="788" loading="lazy">
+        <figcaption>Accepting Program of the Year with the officer team at the W. P. Carey awards ceremony.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/seo-poty-graphic.jpg" alt="W. P. Carey graphic announcing Program of the Year: Speaker Series with Marc Lore, hosted by Student Entrepreneurship Organization" width="900" height="1121" loading="lazy">
+        <figcaption>The school's announcement of the award.</figcaption>
+      </figure>
+      <figure>
+        <div class="chart">
+          <svg viewBox="0 0 520 170" role="img" aria-labelledby="mlT mlD" style="min-width:420px">
+            <title id="mlT">Marc Lore event: from RSVP to attendance</title>
+            <desc id="mlD">194 RSVPs, about 68 attended (35 percent), of whom about 45 came in person and 23 joined online.</desc>
+            <g style="font-size:13px">
+              <text x="0" y="33" class="t-ink" style="font-weight:600">RSVPs</text>
+              <text x="0" y="79" class="t-ink">Attended</text>
+              <text x="0" y="125" class="t-ink">In person</text>
+            </g>
+            <line x1="100" y1="10" x2="100" y2="142" class="g"/>
+            <rect class="bar acc" x="101" y="16" width="340" height="26" rx="3"><title>194 RSVPs</title></rect>
+            <rect class="bar soft" x="101" y="62" width="119" height="26" rx="3"><title>About 68 attended (35% of RSVPs)</title></rect>
+            <rect class="bar soft" x="101" y="108" width="79" height="26" rx="3"><title>About 45 in person, 23 online</title></rect>
+            <g class="mono" style="font-size:12px;font-weight:700">
+              <text x="447" y="34" class="t-ink">194</text><text x="226" y="80" class="t-ink">~68 · 35%</text><text x="186" y="126" class="t-ink">~45 · +23 online</text>
+            </g>
+            <text x="0" y="164" class="t-mut" style="font-size:12px">From my post-event review. The RSVP form also collected the Q&amp;A questions.</text>
+          </svg>
+        </div>
+        <figcaption>About a third of RSVPs showed up. My review flagged that gap so later events plan rooms and food around real turnout.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/seo-general-meeting.jpg" alt="A general meeting of the Student Entrepreneurship Organization, about forty members posing for a group photo" width="1400" height="1050" loading="lazy">
+        <figcaption>A general meeting of the Student Entrepreneurship Organization.</figcaption>
+      </figure>
     </div>
   </article>
 </main>
